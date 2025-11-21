@@ -4,6 +4,7 @@ body {
     font-family: monospace;
     text-align: center;
     padding: 20px;
+    margin: 0;
 }
 
 h1 {
@@ -28,18 +29,20 @@ label {
     border-radius: 5px;
 }
 
+/* Keep preview canvas hidden offscreen */
 #previewCanvas {
-    width: 70vw;
-    height: 70vh;
-    background: #222;
-    margin: 10px auto;
-    display: block;
+    display: none;
 }
 
+/* ASCII output fills viewport */
 #asciiOutput {
+    width: 100vw;
+    height: 80vh;
     white-space: pre;
+    font-family: monospace;
     font-size: 8px;
     line-height: 8px;
-    margin-top: 20px;
     color: #0f0;
+    margin: 10px auto;
+    background: #111;
 }
