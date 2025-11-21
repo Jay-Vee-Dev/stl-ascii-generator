@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STL/OBJ to ASCII Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>STL / OBJ → ASCII Converter</h1>
+
+    <div class="upload-box">
+        <input type="file" id="modelInput" accept=".stl,.obj">
+        <label for="modelInput">Choose STL or OBJ File</label>
+    </div>
+
+    <canvas id="previewCanvas"></canvas>
+
+    <pre id="asciiOutput"></pre>
+
+    <script src="libs/three.min.js"></script>
+    <script src="libs/STLLoader.js"></script>
+    <script src="libs/OBJLoader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

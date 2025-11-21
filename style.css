@@ -1,0 +1,45 @@
+body {
+    background: #111;
+    color: #0f0;
+    font-family: monospace;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #0f0;
+    margin-bottom: 20px;
+}
+
+.upload-box {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label {
+    padding: 10px 20px;
+    background: #222;
+    border: 1px solid #0f0;
+    cursor: pointer;
+    color: #0f0;
+    border-radius: 5px;
+}
+
+#previewCanvas {
+    width: 400px;
+    height: 400px;
+    background: #222;
+    margin: 10px auto;
+    display: block;
+}
+
+#asciiOutput {
+    white-space: pre;
+    font-size: 8px;
+    line-height: 8px;
+    margin-top: 20px;
+    color: #0f0;
+}
