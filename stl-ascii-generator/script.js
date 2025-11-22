@@ -29,19 +29,31 @@ function initThree() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Lights
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2, 2, 2);
-    scene.add(light);
-    scene.add(new THREE.AmbientLight(0x404040, 0.5));
-    // NEW: bind controls to asciiOutput
+    // Key light (main)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.3);
+    keyLight.position.set(2, 2, 3);
+    scene.add(keyLight);
+
+    // Fill light
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+    fillLight.position.set(-2, 1, 2);
+    scene.add(fillLight);
+
+    // Rim / back
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.25);
+    rimLight.position.set(0, 3, -2);
+    scene.add(rimLight);
+
+    // Ambient
+    scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+    // Orbit controls bound to ASCII window
     controls = new THREE.OrbitControls(camera, asciiOutput);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = true;
     controls.enablePan = true;
     controls.addEventListener("change", renderASCII);
-
 
     // Offscreen render target for ASCII
     renderTarget = new THREE.WebGLRenderTarget(120, 60, {
@@ -73,8 +85,10 @@ function loadModel(file) {
             const loader = new THREE.STLLoader();
             const geometry = loader.parse(e.target.result);
             geometry.computeVertexNormals();
-            const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-            mesh = new THREE.Mesh(geometry, material);
+            mesh = new THREE.Mesh(
+                geometry,
+                new THREE.MeshPhongMaterial({ color: 0x00ff00 })
+            );
         } else if (ext === "obj") {
             const loader = new THREE.OBJLoader();
             mesh = loader.parse(e.target.result);
@@ -89,13 +103,18 @@ function loadModel(file) {
             return;
         }
 
-        // Rotate, center, scale
-        mesh.rotation.x = -Math.PI / 2;
-        mesh.rotation.y = Math.PI / 8;
+        // ✓ FIX ORIENTATION — rotate Z-up to Y-up
+        mesh.rotation.x = Math.PI / 2;
+        mesh.rotation.y = Math.PI/20;
+        mesh.rotation.z = Math.PI;
 
+
+
+        // Center + scale
         const box = new THREE.Box3().setFromObject(mesh);
         const size = new THREE.Vector3();
         box.getSize(size);
+
         const maxDim = Math.max(size.x, size.y, size.z);
         mesh.scale.setScalar(maxDim > 0 ? 4 / maxDim : 1);
 
@@ -137,18 +156,21 @@ function renderASCII() {
     renderer.setRenderTarget(null);
 
     const buffer = new Uint8Array(width * height * 4);
+
     try {
         renderer.readRenderTargetPixels(renderTarget, 0, 0, width, height, buffer);
-    } catch (e) { return; }
+    } catch (e) {
+        return;
+    }
 
     let ascii = "";
-    for (let y = 0; y < height; y++) {  // fix upside-down
+    for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             const i = (y * width + x) * 4;
             const r = buffer[i], g = buffer[i + 1], b = buffer[i + 2];
             const brightness = (r + g + b) / 3;
-            const charIndex = Math.floor((brightness / 255) * (asciiChars.length - 1));
-            ascii += asciiChars[charIndex];
+            const index = Math.floor((brightness / 255) * (asciiChars.length - 1));
+            ascii += asciiChars[index];
         }
         ascii += "\n";
     }
@@ -158,6 +180,6 @@ function renderASCII() {
 
 function onWindowResize() {
     asciiOutput.style.width = window.innerWidth + "px";
-    asciiOutput.style.height = Math.floor(window.innerHeight * 0.8) + "px";
+    asciiOutput.style.height = window.innerHeight + "px";
     renderASCII();
 }

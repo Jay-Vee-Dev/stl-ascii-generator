@@ -42,12 +42,13 @@ label {
 /* ASCII output fills viewport */
 #asciiOutput {
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     white-space: pre;
     font-family: monospace;
     font-size: 8px;
     line-height: 8px;
     color: #0f0;
-    margin: 10px auto;
+    margin: 0;
     background: #111;
+    overflow: hidden;
 }
