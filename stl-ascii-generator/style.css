@@ -1,14 +1,14 @@
 body {
     background: #111;
-    color: #0f0;
+    color: #0ff; /* neon blue for all text */
     font-family: monospace;
     text-align: center;
     padding: 20px;
     margin: 0;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; /* optional glow effect */
 }
 
 h1 {
-    color: #0f0;
     margin-bottom: 20px;
 }
 
@@ -23,10 +23,11 @@ input[type="file"] {
 label {
     padding: 10px 20px;
     background: #222;
-    border: 1px solid #0f0;
+    border: 1px solid #0ff;
     cursor: pointer;
-    color: #0f0;
+    color: #0ff;
     border-radius: 5px;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
 }
 
 /* Keep preview canvas hidden offscreen */
@@ -38,7 +39,6 @@ label {
     pointer-events: auto; /* required for OrbitControls */
 }
 
-
 /* ASCII output fills viewport */
 #asciiOutput {
     width: 100vw;
@@ -47,7 +47,8 @@ label {
     font-family: monospace;
     font-size: 8px;
     line-height: 8px;
-    color: #0f0;
+    color: #0ff;          /* neon blue */
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; /* optional glow effect */
     margin: 0;
     background: #111;
     overflow: hidden;
