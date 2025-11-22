@@ -47,7 +47,7 @@ function initThree() {
     // Ambient
     scene.add(new THREE.AmbientLight(0xffffff, 0.15));
 
-    // Orbit controls bound to ASCII window
+    // Orbit controls for the ASCII window
     controls = new THREE.OrbitControls(camera, asciiOutput);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
@@ -103,14 +103,14 @@ function loadModel(file) {
             return;
         }
 
-        // ✓ FIX ORIENTATION — rotate Z-up to Y-up
+        // ORIENTATION 
         mesh.rotation.x = Math.PI / 2;
         mesh.rotation.y = Math.PI/20;
         mesh.rotation.z = Math.PI;
 
 
 
-        // Center + scale
+        // Center and scaling
         const box = new THREE.Box3().setFromObject(mesh);
         const size = new THREE.Vector3();
         box.getSize(size);

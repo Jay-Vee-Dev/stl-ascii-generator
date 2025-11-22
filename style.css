@@ -5,7 +5,7 @@ body {
     text-align: center;
     padding: 20px;
     margin: 0;
-    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; /* optional glow effect */
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; /* glow effect */
 }
 
 h1 {
@@ -30,7 +30,7 @@ label {
     text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
 }
 
-/* Keep preview canvas hidden offscreen */
+/* Keep preview canvas hidden */
 #previewCanvas {
     width: 0;
     height: 0;
