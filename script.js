@@ -56,7 +56,7 @@ function initThree() {
     controls.addEventListener("change", renderASCII);
 
     // Offscreen render target for ASCII
-    renderTarget = new THREE.WebGLRenderTarget(120, 60, {
+    renderTarget = new THREE.WebGLRenderTarget(240, 120, {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
         format: THREE.RGBAFormat,
@@ -149,7 +149,8 @@ function renderASCII() {
 
     const width = renderTarget.width;
     const height = renderTarget.height;
-    const asciiChars = " .:-=+*#%@";
+   const asciiChars = " `'.,-~:;=!*#$@";
+
 
     renderer.setRenderTarget(renderTarget);
     renderer.render(scene, camera);

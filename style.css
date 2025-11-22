@@ -45,8 +45,8 @@ label {
     height: 100vh;
     white-space: pre;
     font-family: monospace;
-    font-size: 8px;
-    line-height: 8px;
+    font-size: 6px;
+    line-height: 6px;
     color: #0ff;          /* neon blue */
     text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff; /* optional glow effect */
     margin: 0;
